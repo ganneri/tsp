@@ -1,0 +1,61 @@
+Implementing the Travelling Salesperson
+
+Task: Given a list of cities and the distances between each pair of cities, what is the shortest possible
+route that visits each city exactly once and returns to the origin city?
+For this week’s practical work, we are going to implement and investigate the Travelling Salesperson Problem.
+
+Example
+Here is the example problem instance we looked at in the lecture:
+
+Recall that there are six possible routes through this graph that satisfy the problem constraints:
+ABCD, ABDC, ACBD, ACDB, ADBC, ADCB
+Since the graph is fully connected and we are anchoring the start point, this is the number of permutations of the
+sequence of cities minus one, i.e.:
+
+number of routes = (n − 1)! = (n − 1) ∗ (n − 2) ∗ (n − 3) ∗ ... ∗ 1
+
+Computational Intelligence Week 1:Implementing the Travelling Salesperson Problem 2
+Step 1: Data Structure for the Graph
+First, implement an appropriate data structure to store the graph and its weights.
+I suggest something simple. I.e. don’t create a java object for every node. Hint: think about using a double array or
+matrix as a basis.
+Now, populate this data structure with the example graph given above.
+Question: how will your data structure grow according to the number of cities? Make sure you can
+instantiate the data structure for problems of different sizes (i.e. different numbers of cities).
+
+Step 2: Data Structure for a Single Route
+Second, we need a data structure to hold a single possible route through the graph (e.g. ”ABCD”). Think about how
+to satisfy the constraints of the problem (e.g. each city can only appear once).
+
+Step 3: Evaluation Function
+Third, we need a function or method that will, for a given route, return to us the cost of that route, given the data.
+Before diving into coding this, think about the algorithm that that function will need to follow.
+This function should allow us to write statements something like this:
+cost = getCostOfRoute(route);
+
+Step 4: Evaluate Some Random Routes
+Write some code that generates random (legal!) routes through your graph. Then evaluate them and see the range of
+costs that exist.
+
+Step 5: Try a Bigger Problem Instance
+Download the file ulysses16.csv from Blackboard and take a look inside.
+It contains three columns:
+• The first contains the ID of a city,
+• The second and third contain the city’s x and y coordinates on a map.
+Assume that the graph is fully connected (i.e. I can reach each city from every other) and that the cost associated
+with travelling between two cities is Euclidean distance between them.
+I.e. to work out the cost of travelling between city A and city B, you need to use Pythagoras’s theorem:
+
+distance AB = √(xB − xA)^2 + (yB − yA)^2
+
+Computational Intelligence Week 1:Implementing the Travelling Salesperson Problem 3
+Where xA and yA are the x and y coordinates of city a (and respectively for B), and distanceAB is the distance, and
+hence cost of travelling, between cities A and B.
+It should be reasonably straightforward to write a short program to read in this file and use the above calculation to
+populate your data structure from Step 1.
+
+Step 6: Test Your Intuition About Problem Size
+If you have got this far, you might like to now actually try to write a naive program to check every possible route,
+one by one. See if you can think of an algorithm which will generate all the possible routes (i.e. all the possible permutations of
+the list of cities), and evaluate them.
+Question: At what size of problem does it become infeasible to wait around for the answer?
